@@ -1,7 +1,10 @@
 package bdn.helloworld.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,9 +26,15 @@ public class BenchmarkController {
 	}
 	
 	@RequestMapping(value = "addBenchmark", method = RequestMethod.POST)
-	public String updateBenchmarkIndex(@ModelAttribute("benchmarkAttrib") Benchmark benchmark) {
+	public String updateBenchmarkIndex(@Valid @ModelAttribute("benchmarkAttrib") Benchmark benchmark, BindingResult result) {
+		
+		System.out.println("result has errors: " + result.hasErrors());
 		
 		System.out.println("Benchmark updated: " + benchmark.getBenchmarkIndex());
+		
+		if (result.hasErrors()) {
+			return "addBenchmarkPage";
+		}
 		
 		return "redirect:ticker.html";
 	}

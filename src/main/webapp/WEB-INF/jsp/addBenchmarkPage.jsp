@@ -9,14 +9,30 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<style type="text/css">
+.error {
+	color: #ff0000;
+}
+.errorblock {
+	color: #000;
+	background-color: #ffEEEE;
+	border: 3px solid #ff0000;
+	padding: 8px;
+	margin: 16px;
+}
+</style>
+
 </head>
 <body>
 
 <form:form modelAttribute="benchmarkAttrib">
+	<form:errors path="*" cssClass="errorblock" element="div" />
 	<table>
 		<tr>
 			<td>Enter Benchmark Index:</td>
-			<td><form:input path="benchmarkIndex"/></td>
+			<td><form:input path="benchmarkIndex" cssErrorClass="error" /></td>
+			<td><form:errors path="benchmarkIndex" cssClass="error" /></td>
 		</tr>
 		<tr>
 			<td colspan="2">
