@@ -14,12 +14,22 @@
 
 	<context:component-scan base-package="bdn.helloworld.controller" />
 
+	<!-- basename messages is referring to messages.properties in src/main/resources -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" p:basename="messages"></bean>
+
+	<!-- interceptor for detecting language; "lang" is the parameter we gave in URL for language -->
+	<mvc:interceptors>
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" p:paramName="lang"></bean>
+	</mvc:interceptors>
+
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" p:defaultLocale="en"/>
+
+
 	<!-- The long way to specify a bean
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
 			<property name="prefix" value="/WEB-INF/jsp/"/>
 			<property name="suffix" value=".jsp"/> 
 	</bean> -->
-
 
 	<!-- this is telling the resource resolver where our jsp pages are located at when 
 	     the controller returns a View object. the object is prefixed and suffixed as per 

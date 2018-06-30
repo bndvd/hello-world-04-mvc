@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<!-- for prefix you can use whatever text you want -->
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!-- spring tag library that allows us to use spring tag forms, etc. -->
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
@@ -13,10 +15,13 @@
 <body>
 <h1>Ticker page</h1>
 
+Language: <a href="?lang=en">English</a> | <a href="?lang=de">German</a>
+
+<!-- tickerModel is the backing model -->
 <form:form modelAttribute="tickerModel">
 	<table>
 		<tr>
-			<td>Ticker symbol:</td>
+			<td><spring:message code="ticker-symbol.text"/></td>
 			<td><form:input path="tickerChars"/></td>
 		</tr>
 		<tr>
@@ -26,6 +31,10 @@
 		</tr>
 	</table>
 </form:form>
+
+<br><br>
+Our benchmark is ${benchmarkAttrib.benchmarkIndex}.
+Click <a href="addBenchmark.html">here</a> to change Benchmark.
 
 </body>
 </html>
