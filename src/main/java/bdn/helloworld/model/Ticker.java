@@ -3,8 +3,18 @@ package bdn.helloworld.model;
 public class Ticker {
 	
 	private String tickerChars;
+	
+	private int numShares;
 
-	public String getTickerChars() {
+		public int getNumShares() {
+		return numShares;
+	}
+
+	public void setNumShares(int numShares) {
+		this.numShares = numShares;
+	}
+
+		public String getTickerChars() {
 		return tickerChars;
 	}
 

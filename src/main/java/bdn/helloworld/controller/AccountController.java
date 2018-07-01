@@ -36,6 +36,7 @@ public class AccountController {
 	public String addSecurityTickerMore(@ModelAttribute("tickerModel") Ticker ticker) {
 
 		System.out.println("tickerMore: " + ticker.getTickerChars());
+		System.out.println("ticketMore shareQty selected: " + ticker.getNumShares());
 		
 
 		// this is the name of the jsp page it needs to load for the greeting request
@@ -59,6 +60,10 @@ public class AccountController {
 		Transaction t3 = new Transaction();
 		t3.setShareQty(11);
 		transactions.add(t3);
+		
+		Transaction t4 = new Transaction();
+		t4.setShareQty(532);
+		transactions.add(t4);
 		
 		return transactions;
 	}
