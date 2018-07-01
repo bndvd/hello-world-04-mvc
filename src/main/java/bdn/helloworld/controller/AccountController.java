@@ -1,8 +1,8 @@
 package bdn.helloworld.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,9 +11,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import bdn.helloworld.model.Ticker;
 import bdn.helloworld.model.Transaction;
+import bdn.helloworld.service.TransactionService;
 
 @Controller
 public class AccountController {
+	
+	@Autowired
+	private TransactionService transactionService;
 
 	// return string is used by View Resolver
 	@RequestMapping(value = "/ticker")
@@ -47,25 +51,7 @@ public class AccountController {
 	
 	@RequestMapping(value = "/shares", method = RequestMethod.GET)
 	public @ResponseBody List<Transaction> findAllTransactions() {
-		List<Transaction> transactions = new ArrayList<Transaction>();
-		
-		Transaction t1 = new Transaction();
-		t1.setShareQty(5);
-		transactions.add(t1);
-		
-		Transaction t2 = new Transaction();
-		t2.setShareQty(120);
-		transactions.add(t2);
-		
-		Transaction t3 = new Transaction();
-		t3.setShareQty(11);
-		transactions.add(t3);
-		
-		Transaction t4 = new Transaction();
-		t4.setShareQty(532);
-		transactions.add(t4);
-		
-		return transactions;
+		return transactionService.findAllTransactions();
 	}
 	
 
